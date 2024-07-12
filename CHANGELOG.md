@@ -1,4 +1,8 @@
 # Changelog
+## 2.0.1
+
+- updated connectivity_plus to 5.0.1
+
 ## 2.0.0
 
 - Changes to structure to be all in one package.

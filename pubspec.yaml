@@ -1,6 +1,6 @@
 name: rollbar_flutter_aio
 description: Connect your Flutter applications to Rollbar for error reporting.
-version: 2.0.0
+version: 2.0.1
 homepage: https://www.rollbar.com
 documentation: https://docs.rollbar.com/docs/flutter#flutter
 repository: https://github.com/rollbar/rollbar-flutter
@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   meta: ^1.7.0
-  connectivity_plus: ^4.0.0
+  connectivity_plus: ^5.0.1
   sqlite3_flutter_libs: ^0.5.12
   http: '>=0.13.0 <2.0.0'
   collection: ^1.16.0
