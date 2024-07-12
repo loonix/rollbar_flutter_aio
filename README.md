@@ -1,4 +1,4 @@
-# rollbar-flutter
+# rollbar-flutter-aio
 
 [Flutter](https://flutter.dev/) notifier for reporting exceptions, errors and log messages to [Rollbar](https://rollbar.com).
 
