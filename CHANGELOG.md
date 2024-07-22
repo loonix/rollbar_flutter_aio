@@ -1,4 +1,8 @@
 # Changelog
+## 2.0.3
+
+- fix to IOS project
+
 ## 2.0.2
 
 - Updated IOS package name.
