@@ -1,4 +1,8 @@
 # Changelog
+## 2.0.2
+
+- Updated IOS package name.
+
 ## 2.0.1
 
 - updated connectivity_plus to 5.0.1
