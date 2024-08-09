@@ -1,4 +1,6 @@
 # Changelog
+## 2.0.4
+- Bumped version of `connectivity_plus` dependency to `^6.0.1`.
 ## 2.0.3
 
 - fix to IOS project
