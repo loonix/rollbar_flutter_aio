@@ -26,7 +26,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-    namespace 'com.rollbar.rollbar_flutter'
+    namespace 'com.rollbar.rollbar_flutter_aio_example'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

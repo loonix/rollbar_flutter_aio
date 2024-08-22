@@ -1,4 +1,7 @@
 # Changelog
+## 2.0.7
+* Namespace fixes
+
 ## 2.0.6
 - Namespace added for android example
 
