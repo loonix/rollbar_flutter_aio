@@ -1,5 +1,7 @@
 # rollbar-flutter-aio
 
+This plugin was refactored into a single plugin, as the current rollbar is no longer supported by the team. I dont have much time to maintain this, feel free to make PR's and I can trigger new versions.
+
 [Flutter](https://flutter.dev/) notifier for reporting exceptions, errors and log messages to [Rollbar](https://rollbar.com).
 
 ## Usage
