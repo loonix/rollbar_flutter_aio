@@ -34,6 +34,7 @@ apply plugin: "com.github.spotbugs"
 
 android {
     compileSdkVersion 31
+    namespace 'com.rollbar.rollbar_flutter'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
