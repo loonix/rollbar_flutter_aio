@@ -1,4 +1,7 @@
 # Changelog
+## 2.0.8
+* Updated Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported.
+
 ## 2.0.7
 * Namespace fixes
 
