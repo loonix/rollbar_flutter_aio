@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'rollbar_flutter_aio'
-  s.version          = '2.0.3'
+  s.version          = '2.0.9'
   s.summary          = 'Connect your Flutter applications to Rollbar for error reporting.'
   s.description      = <<-DESC
 Connect your Flutter applications to Rollbar for error reporting.
@@ -16,9 +16,9 @@ Connect your Flutter applications to Rollbar for error reporting.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'RollbarNotifier', '~> 3.2.0'
+  s.dependency 'RollbarNotifier', '~> 3.3.2'
   s.static_framework = true
-  s.platform = :ios, '11.0'
+  s.platform = :ios, '12.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES',

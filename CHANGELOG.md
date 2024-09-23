@@ -1,4 +1,14 @@
 # Changelog
+
+## 2.0.9
+* Updated RollbarNotifier to use 3.3.2 version of the Rollbar Apple SDK.
+* Changed platform IOS to 12.0 to support the new version of the Rollbar Apple SDK.
+* fixes issue in IOS builds
+  * error: no type named 'terminate_handler' in namespace 'std'
+  * error: no member named 'set_terminate' in namespace 'std'
+  * error: no type named 'set_terminate' in namespace 'std'
+
+
 ## 2.0.8
 * Updated Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported.
 
