@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.10
+* Updated SQLite dependencies to be compliant with Google's 16KB page size update.
+
 ## 2.0.9
 * Updated RollbarNotifier to use 3.3.2 version of the Rollbar Apple SDK.
 * Changed platform IOS to 12.0 to support the new version of the Rollbar Apple SDK.
