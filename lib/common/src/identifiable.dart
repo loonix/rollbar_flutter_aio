@@ -5,9 +5,10 @@ import 'package:uuid/uuid.dart';
 /// This is our global UUID generator.
 const uuidGen = Uuid();
 
+// ignore: experimental_member_use
 typedef UUID = UuidValue;
 
-final nilUUID = UUID("00000000-0000-0000-0000-000000000000");
+const nilUUID = UUID.raw('00000000-0000-0000-0000-000000000000');
 
 abstract class Identifiable<T extends Object> {
   T get id;

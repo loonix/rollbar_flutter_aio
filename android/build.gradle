@@ -80,8 +80,8 @@ String engineVersion = Paths
 def flutterVersion = "1.0.0-${engineVersion}"
 
 dependencies {
-    api 'com.rollbar:rollbar-java:1.7.8'
-    api 'com.rollbar:rollbar-android:1.7.8@aar'
+    api 'com.rollbar:rollbar-java:1.10.3'
+    api 'com.rollbar:rollbar-android:1.10.3@aar'
     compileOnly "io.flutter:flutter_embedding_debug:${flutterVersion}"
 
     testImplementation "io.flutter:flutter_embedding_debug:${flutterVersion}"

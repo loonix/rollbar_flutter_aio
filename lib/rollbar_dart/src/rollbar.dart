@@ -8,7 +8,8 @@ import '../../rollbar_dart/src/data/event.dart';
 @sealed
 class Rollbar {
   static Rollbar? _current;
-  static Rollbar get current => _current.orElse(() => throw StateError('Rollbar has not been initialized, call Rollbar.run.'));
+  static Rollbar get current => _current.orElse(() =>
+      throw StateError('Rollbar has not been initialized, call Rollbar.run.'));
 
   final Sandbox _sandbox;
 
@@ -25,12 +26,17 @@ class Rollbar {
     dynamic errorOrMessage, {
     StackTrace stackTrace = StackTrace.empty,
     Level level = Level.info,
+    String? fingerprint,
+    String? title,
+    JsonMap? custom,
   }) async {
     final Event event;
     if (errorOrMessage is Error || errorOrMessage is Exception) {
-      event = ErrorEvent(errorOrMessage, stackTrace, level: level);
+      event = ErrorEvent(errorOrMessage, stackTrace,
+          level: level, fingerprint: fingerprint, title: title, custom: custom);
     } else if (errorOrMessage is Object) {
-      event = MessageEvent(errorOrMessage.toString(), level: level);
+      event = MessageEvent(errorOrMessage.toString(),
+          level: level, fingerprint: fingerprint, title: title, custom: custom);
     } else {
       throw ArgumentError.value(
         errorOrMessage,
@@ -43,6 +49,11 @@ class Rollbar {
   }
 
   /// Sends an error as an occurrence, with [Level.debug] level.
+  ///
+  /// For a custom [fingerprint] or [title], call [log] directly with the
+  /// matching [level] instead — kept off this and the other level-named
+  /// convenience methods below so their existing positional [stackTrace]
+  /// argument never has to change shape for existing callers.
   static FutureOr<void> debug(
     dynamic errorOrMessage, [
     StackTrace stackTrace = StackTrace.empty,

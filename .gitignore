@@ -25,3 +25,8 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Local persistence file created by running the test suite (PersistentHttpSender's
+# queue) — a runtime artifact, not source; showed up in `dart pub publish --dry-run`'s
+# file listing before this was added.
+rollbar.db

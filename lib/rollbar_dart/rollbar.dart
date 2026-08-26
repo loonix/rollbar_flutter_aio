@@ -1,5 +1,7 @@
 library rollbar;
 
+export '../common/rollbar_common.dart' show HttpMethod, HttpStatus, Level;
+
 export 'src/rollbar.dart' show Rollbar;
 
 export 'src/sandbox/sandbox.dart' show Sandbox;

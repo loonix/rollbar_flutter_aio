@@ -17,6 +17,19 @@ abstract class Event {}
 /// event.
 abstract class Notification implements Event {
   Level get level;
+
+  /// Overrides Rollbar's default stack/exception-class grouping for this
+  /// occurrence. Null (the default) leaves grouping untouched.
+  String? get fingerprint;
+
+  /// Overrides the occurrence's display title. Null (the default) leaves it
+  /// to Rollbar. Truncated to 255 chars — Rollbar's documented limit.
+  String? get title;
+
+  /// Extra key/value data attached to this occurrence (Data.custom), visible
+  /// and searchable in Rollbar directly — unlike breadcrumb extras, which
+  /// only show up in the telemetry trail of whichever occurrence follows.
+  JsonMap? get custom;
 }
 
 @sealed
@@ -44,10 +57,19 @@ class MessageEvent implements Notification, Event {
   @override
   final Level level;
   final String message;
+  @override
+  final String? fingerprint;
+  @override
+  final String? title;
+  @override
+  final JsonMap? custom;
 
   const MessageEvent(
     this.message, {
     this.level = Level.info,
+    this.fingerprint,
+    this.title,
+    this.custom,
   });
 
   @override
@@ -61,12 +83,21 @@ class ErrorEvent implements Notification, Event {
   final dynamic error;
   final String? description;
   final StackTrace stackTrace;
+  @override
+  final String? fingerprint;
+  @override
+  final String? title;
+  @override
+  final JsonMap? custom;
 
   const ErrorEvent(
     this.error,
     this.stackTrace, {
     this.description,
     this.level = Level.error,
+    this.fingerprint,
+    this.title,
+    this.custom,
   });
 
   @override

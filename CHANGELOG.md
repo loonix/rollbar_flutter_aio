@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.11
+* Updated Android native SDK (`rollbar-java`/`rollbar-android`) from 1.7.8 to 1.10.3.
+* Updated RollbarNotifier (Rollbar Apple SDK) constraint from `~> 3.3.2` to `~> 3.4.0`.
+* Added optional `fingerprint`/`title` to `Rollbar.log` (custom grouping override), threaded through to the sent payload.
+* Added optional `custom` data map to `Rollbar.log`, threaded through to `Data.custom` on the sent payload (previously only reachable via the breadcrumb trail).
+* Exported `HttpMethod`, `HttpStatus` and `Level` from the main `rollbar.dart` barrel — `Breadcrumb.network(...)` and `Rollbar.log(level: ...)` were unusable from consuming apps without reaching into internal `src/` paths.
+* Fixed `FlutterHook.onError` passing the raw caught exception into `Rollbar.error(...)`: for a build-time error (e.g. "setState() or markNeedsBuild() called during build"), the exception's own diagnostics can embed the actual offending `Element`, which for a widget with an `AnimationController` retains a live `Ticker`/`Completer`. Sending that object graph across the isolate boundary throws "Illegal argument in isolate message: object is unsendable" — asynchronously and un-awaited, so the occurrence was silently never sent. Now wrapped in a plain string before it crosses that boundary.
+
 ## 2.0.10
 * Updated SQLite dependencies to be compliant with Google's 16KB page size update.
 

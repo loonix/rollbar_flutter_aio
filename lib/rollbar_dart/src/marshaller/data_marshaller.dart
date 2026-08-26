@@ -11,7 +11,7 @@ import '../../../rollbar_dart/src/stacktrace.dart';
 class DataMarshaller implements Marshaller {
   final Config config;
 
-  DataMarshaller(this.config);
+  const DataMarshaller(this.config);
 
   @override
   Data marshall({
@@ -30,7 +30,28 @@ class DataMarshaller implements Marshaller {
           notifier: const {'version': Notifier.version, 'name': Notifier.name},
           platform: Platform.operatingSystem,
           server: {'root': context.config.package},
-          timestamp: DateTime.now().toUtc());
+          timestamp: DateTime.now().toUtc(),
+          fingerprint: _normalizedFingerprint(event.fingerprint),
+          title: _normalizedTitle(event.title),
+          custom: (event.custom == null || event.custom!.isEmpty)
+              ? null
+              : event.custom);
+
+  /// Rollbar has no documented length limit for fingerprint, but an empty
+  /// string is not a meaningful override — treat it as "none supplied".
+  static String? _normalizedFingerprint(String? fingerprint) =>
+      (fingerprint == null || fingerprint.isEmpty) ? null : fingerprint;
+
+  /// Rollbar's documented title limit is 1-255 characters; truncate rather
+  /// than let an oversized title cause the whole occurrence to be rejected.
+  static const _maxTitleLength = 255;
+
+  static String? _normalizedTitle(String? title) {
+    if (title == null || title.isEmpty) return null;
+    return title.length > _maxTitleLength
+        ? title.substring(0, _maxTitleLength)
+        : title;
+  }
 }
 
 extension _Body on Body {
@@ -71,7 +92,10 @@ extension _ExceptionInfo on ExceptionInfo {
     if (error is ExceptionInfo) {
       return error.copyWith(description: error.description ?? description);
     } else if (error is Object) {
-      return ExceptionInfo(type: error.runtimeType.toString(), message: error.toString(), description: description);
+      return ExceptionInfo(
+          type: error.runtimeType.toString(),
+          message: error.toString(),
+          description: description);
     } else {
       throw ArgumentError.value(
         error,

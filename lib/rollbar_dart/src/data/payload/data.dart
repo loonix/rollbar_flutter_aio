@@ -23,6 +23,8 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
   final JsonMap? platformPayload;
   final JsonMap server;
   final DateTime timestamp;
+  final String? fingerprint;
+  final String? title;
 
   const Data({
     required this.notifier,
@@ -39,6 +41,8 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
     this.custom,
     this.platformPayload,
     required this.server,
+    this.fingerprint,
+    this.title,
   });
 
   Data copyWith({
@@ -56,6 +60,8 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
     JsonMap? custom,
     JsonMap? platformPayload,
     JsonMap? server,
+    String? fingerprint,
+    String? title,
   }) =>
       Data(
         notifier: notifier ?? this.notifier,
@@ -72,6 +78,8 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
         custom: custom ?? this.custom,
         platformPayload: platformPayload ?? this.platformPayload,
         server: server ?? this.server,
+        fingerprint: fingerprint ?? this.fingerprint,
+        title: title ?? this.title,
       );
 
   /// Shallow copy
@@ -89,7 +97,9 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
       user: other.user,
       custom: other.custom,
       platformPayload: other.platformPayload,
-      server: other.server);
+      server: other.server,
+      fingerprint: other.fingerprint,
+      title: other.title);
 
   factory Data.fromMap(JsonMap json) => Data(
       notifier: json.notifier,
@@ -105,7 +115,9 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
       custom: json.custom,
       platformPayload: json.platformPayload,
       server: json.server,
-      timestamp: json.timestamp);
+      timestamp: json.timestamp,
+      fingerprint: json.fingerprint,
+      title: json.title);
 
   @override
   JsonMap toMap() => {
@@ -123,6 +135,8 @@ class Data with EquatableSerializableMixin implements Serializable, Equatable {
         'framework': framework,
         'code_version': codeVersion,
         'platform_payload': platformPayload,
+        'fingerprint': fingerprint,
+        'title': title,
       }.compact();
 }
 
@@ -135,10 +149,14 @@ extension _KeyValuePaths on JsonMap {
   String get language => this['language'];
   String get framework => this['framework'];
   String get codeVersion => this['code_version'];
-  Level get level => Level.values.firstWhere((level) => level.name == this['level']);
+  Level get level =>
+      Level.values.firstWhere((level) => level.name == this['level']);
   Body get body => Body.fromMap(this['body']);
   User? get user => (this['person'] as JsonMap?).map(User.fromMap);
   JsonMap? get custom => this['custom'];
   JsonMap? get platformPayload => this['platform_payload'];
-  DateTime get timestamp => DateTime.fromMicrosecondsSinceEpoch(this['timestamp'], isUtc: true);
+  DateTime get timestamp =>
+      DateTime.fromMicrosecondsSinceEpoch(this['timestamp'], isUtc: true);
+  String? get fingerprint => this['fingerprint'] as String?;
+  String? get title => this['title'] as String?;
 }
